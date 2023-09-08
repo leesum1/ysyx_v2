@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="kHEwBTNMhC9_r5Xr6BEo" name="第 1 页">
-        <mxGraphModel dx="2022" dy="2096" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="1640" dy="1536" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -118,7 +118,7 @@
                     <mxGeometry x="432.5" y="485" width="90" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="49" value="Cache" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="50" y="-146" width="140" height="146" as="geometry">
+                    <mxGeometry x="50" y="-170" width="140" height="230" as="geometry">
                         <mxRectangle x="730" y="126" width="60" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
@@ -128,25 +128,28 @@
                 <mxCell id="51" value="2. 内部需要做仲裁，谁优先？" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="49" vertex="1">
                     <mxGeometry y="80" width="140" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="52" value="Item 3" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="49" vertex="1">
-                    <mxGeometry y="120" width="140" height="26" as="geometry"/>
+                <mxCell id="52" value="+ Cache &amp;lt;--&amp;gt; Core 接口采用 valid-ready 接口（发送 pc，接受数据，至少两个周期？欠考虑，需要再参考其他核心）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="49" vertex="1">
+                    <mxGeometry y="120" width="140" height="110" as="geometry"/>
                 </mxCell>
                 <mxCell id="53" value="TLB" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;" parent="1" vertex="1">
-                    <mxGeometry x="240" y="-150" width="140" height="190" as="geometry">
+                    <mxGeometry x="-270" y="-20" width="250" height="424" as="geometry">
                         <mxRectangle x="650" y="283" width="60" height="30" as="alternateBounds"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="54" value="1. 使用虚拟地址作为 TAG" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="53" vertex="1">
-                    <mxGeometry y="26" width="140" height="44" as="geometry"/>
+                <mxCell id="54" value="+ 使用虚拟地址作为 TAG，默认最小页为 4KB，Tag 可以采用 pc &amp;gt;&amp;gt; 12 (huge page 是内存对齐的，所以也可以)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="53" vertex="1">
+                    <mxGeometry y="26" width="250" height="74" as="geometry"/>
+                </mxCell>
+                <mxCell id="70" value="+ DATA 部分：需要 pagesize（有大小页之分），需所有的 pte（page table entry） 信息。&lt;br&gt;疑问：asid 需要放在那里？&lt;br&gt;3. Data 部分可以参考 cva6 设计" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="53" vertex="1">
+                    <mxGeometry y="100" width="250" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="55" value="2. 全相连结构" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="53" vertex="1">
-                    <mxGeometry y="70" width="140" height="30" as="geometry"/>
+                    <mxGeometry y="200" width="250" height="56" as="geometry"/>
                 </mxCell>
                 <mxCell id="64" value="3. Data 部分可以参考 cva6 设计" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="53" vertex="1">
-                    <mxGeometry y="100" width="140" height="50" as="geometry"/>
+                    <mxGeometry y="256" width="250" height="72" as="geometry"/>
                 </mxCell>
-                <mxCell id="56" value="4. hit 时在哪里检查 page 权限？" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="53" vertex="1">
-                    <mxGeometry y="150" width="140" height="40" as="geometry"/>
+                <mxCell id="56" value="+ hit 时在哪里检查 page 权限？&lt;br&gt;tlb hit 时，从 tlb 中取出 pte，可以进行权限检查&lt;br&gt;&lt;br&gt;tlb miss 时，从内存中取出 pte，然后再进行权限检查（具体还需要研究）" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="53" vertex="1">
+                    <mxGeometry y="328" width="250" height="96" as="geometry"/>
                 </mxCell>
                 <mxCell id="57" value="MMU" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;html=1;" parent="1" vertex="1">
                     <mxGeometry x="470" y="-146" width="140" height="110" as="geometry">
